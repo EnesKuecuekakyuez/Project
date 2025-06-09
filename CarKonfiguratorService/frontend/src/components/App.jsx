@@ -1,6 +1,8 @@
 import axios from "axios";
 import {useState, useEffect} from "react";
 import "../styles/App.css"
+import Navbar from './Navbar'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,25 +21,7 @@ function App() {
   return (
     <>
      <div>
-      <h1 className="logo">
-      test
-      </h1>
-
-      <ul>
-          {
-            array.map((blog,index) => (
-              <li key={index}
-              className='bg-sky-100 p-4 rounded-2xl transition-transform transform hover:scale-105'>
-                <p className='text-x1 font-semibold text-gray-800'>
-                  {blog.title}
-                </p>
-                <p className='text-sm text-gray-100'>
-                  {blog.content}
-                </p>
-              </li>
-            ))
-          }
-      </ul>
+      <Navbar />
      </div>
     </>
   )
