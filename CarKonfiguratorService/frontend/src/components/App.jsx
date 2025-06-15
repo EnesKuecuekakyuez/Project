@@ -2,6 +2,7 @@ import axios from "axios";
 import {useState, useEffect} from "react";
 import "../styles/App.css"
 import Navbar from './Navbar'
+import Configurator from './Configurator'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     <>
      <div>
       <Navbar />
+      <Configurator/>
      </div>
     </>
   )
