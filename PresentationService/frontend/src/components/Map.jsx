@@ -1,3 +1,4 @@
+// SupercarMap.jsx (ursprüngliche Top-Down Map + neue 3D Box unten)
 import {
   MapContainer,
   TileLayer,
@@ -77,7 +78,6 @@ export default function SupercarMap() {
     axios.get("http://localhost:8080/api/presentation/route").then(async res => {
       const coords = res.data.map(p => p.coords);
       const coordString = coords.map(c => `${c[1]},${c[0]}`).join(";");
-
       const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${coordString}?overview=full&geometries=geojson`;
       const osrmRes = await axios.get(osrmUrl);
       const geoCoords = osrmRes.data.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
@@ -90,9 +90,12 @@ export default function SupercarMap() {
   if (loading) return <p>Loading route...</p>;
 
   return (
-    <MapContainer center={roadPoints[0]} zoom={6} style={{ height: "80vh", width: "100%" }}>
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      <AnimatedMarker route={roadPoints} />
-    </MapContainer>
+    <div>
+      <MapContainer center={roadPoints[0]} zoom={6} style={{ height: "80vh", width: "100%" }}>
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <AnimatedMarker route={roadPoints} />
+      </MapContainer>
+
+    </div>
   );
 }
